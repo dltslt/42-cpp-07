@@ -1,0 +1,7 @@
+en.subject*
+templates
+templatesIter
+templatesArray
+bin/
+build/
+*.o
