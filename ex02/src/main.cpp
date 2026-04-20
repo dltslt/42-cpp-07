@@ -6,7 +6,7 @@
 /*   By: mweghofe <mweghofe@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 12:59:32 by mweghofe          #+#    #+#             */
-/*   Updated: 2026/04/20 22:57:52 by mweghofe         ###   ########.fr       */
+/*   Updated: 2026/04/20 23:48:32 by mweghofe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void testsConstruction()
 				  << "error: " << e.what() << std::endl;
 	}
 	unsigned int valPos = 1234567890;
+	std::cout << "  test size " << valPos << std::endl;
 	try
 	{
 		Array<int> two(valPos);
@@ -120,6 +121,7 @@ void testsConstruction()
 		std::cerr << "size " << valPos << ": " << e.what() << std::endl;
 	}
 	int val = -123456789;
+	std::cout << "  test size " << static_cast<unsigned int>(val) << std::endl;
 	try
 	{
 		Array<int> two(val);
@@ -133,6 +135,47 @@ void testsConstruction()
 	Array<double> four(99);
 }
 
+void testsDeepCopy()
+{
+	std::cout << "\n#### DEEP COPY TESTS\n\n";
+	std::cout << "  copy constructor for a{10,20,30} with b(a), b[1] = 42\n";
+	Array<int> a(3);
+	a[0] = 10; a[1] = 20; a[2] = 30;
+	Array<int> b(a);
+	b[1] = 42;
+	std::cout << "a | b for [0,1,2]:    " << a[0] << " | " << b[0] << "    "
+		<< a[1] << " | " << b[1] << "    " << a[2] << " | " << b[2] << '\n';
+	std::cout << "\n  copy assignment for c{11,22,33} with b(a), d[1] = 44\n";
+	Array<int> c(3);
+	c[0] = 11; c[1] = 22; c[2] = 33;
+	Array<int> d(3);
+	d = c;
+	d[1] = 44;
+	std::cout << "c | d for [0,1,2]:    " << c[0] << " | " << d[0] << "    "
+		<< c[1] << " | " << d[1] << "    " << c[2] << " | " << d[2] << '\n';
+	std::cout << "\n  self assignment e{42,24}\n";
+	Array<int> e(2);
+	e[0] = 42; e[1] = 24;
+	e = e;
+	std::cout << e[0] << " " << e[1] << "\n";
+	std::cout << "\n  different size assignment m(7){0} n(2){42,24}\n";
+	Array<int> m(7), n(2);
+	n[0] = 42, n[1] = 24;
+	std::cout << "m[0-6] before assignment: "
+		<< m[0] << m[1] << m[2] << m[3] << m[4] << m[5] << m[6] << std::endl;
+	m = n;
+	std::cout << "m[0-1] after assignment: " << m[0] << m[1] << std::endl;
+	try
+	{
+		std::cout << "m[2-6] after assignment: " << std::endl;
+		std::cout << m[2] << m[3] << m[4] << m[5] << m[6] << std::endl;
+	}
+	catch (std::exception& ex)
+	{
+		std::cerr << ex.what() << std::endl;
+	}
+}
+
 } // namespace
 
 int main()
@@ -143,5 +186,6 @@ int main()
 	if (!testsProjectMain())
 		return (1);
 	testsConstruction();
+	testsDeepCopy();
 	return (0);
 }

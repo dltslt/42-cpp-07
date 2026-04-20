@@ -56,7 +56,7 @@ T* Array<T>::createArray()
 {
 	try
 	{
-		return (new T[size_]);
+		return (new T[size_]());
 	}
 	catch (std::bad_alloc& e)
 	{
@@ -101,7 +101,7 @@ Array<T>::~Array()
 template <typename T>
 Array<T>& Array<T>::operator=(const Array& other)
 {
-	if (this != other)
+	if (this != &other)
 	{
 		size_ = other.size_;
 		delete[] element_;
