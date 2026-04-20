@@ -6,11 +6,12 @@
 /*   By: mweghofe <mweghofe@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 11:13:26 by mweghofe          #+#    #+#             */
-/*   Updated: 2026/04/20 21:48:14 by mweghofe         ###   ########.fr       */
+/*   Updated: 2026/04/20 23:04:57 by mweghofe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <exception>
+// #include <exception>
+#include <stdexcept>
 #include <iostream>
 #include "Array.hpp"
 
@@ -35,6 +36,7 @@ Array<T>::Array(unsigned int n)
 {
 	element_ = createArray();
 }
+
 template <typename T>
 unsigned int Array<T>::size() const
 {
@@ -49,7 +51,6 @@ T& Array<T>::operator[](unsigned int i)
 	return (element_[i]);
 }
 
-// TODO maybe those could just be in a namespace as well.. test later when it works
 template <typename T>
 T* Array<T>::createArray()
 {
@@ -100,7 +101,12 @@ Array<T>::~Array()
 template <typename T>
 Array<T>& Array<T>::operator=(const Array& other)
 {
-	size_ = other.size_;
-	T* tmp = createArray();
-	copyArray();
+	if (this != other)
+	{
+		size_ = other.size_;
+		delete[] element_;
+		element_ = createArray();
+		copyArray(other);
+	}
+	return (*this);
 }

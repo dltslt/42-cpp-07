@@ -6,14 +6,16 @@
 /*   By: mweghofe <mweghofe@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 12:59:32 by mweghofe          #+#    #+#             */
-/*   Updated: 2026/04/20 22:36:22 by mweghofe         ###   ########.fr       */
+/*   Updated: 2026/04/20 22:57:52 by mweghofe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
 #include <cstdlib>
 #include <ctime>
+#include <exception>
 #include <iostream>
+#include <stdexcept>
 #include <string>
 
 namespace
@@ -23,7 +25,7 @@ namespace
 bool testsProjectMain()
 {
 	std::cout << "#### TESTS BASED ON MAIN FROM PROJECT PAGE\n\n"
-		<< "  creating two <int> arrays for " << MAX_VAL << " elements\n";
+			  << "  creating two <int> arrays for " << MAX_VAL << " elements\n";
 	Array<int> numbers(MAX_VAL);
 	int* mirror = new int[MAX_VAL];
 	srand(time(NULL));
@@ -68,20 +70,18 @@ bool testsProjectMain()
 		std::cerr << e.what() << '\n';
 	}
 	std::cout << "  some prints from BOTH arrays, must be same:"
-		<< "\n0:\t" << numbers[0] << " | " << mirror[0]
-		<< "\n231:\t" << numbers[231] << " | " << mirror[231]
-		<< "\n584:\t" << numbers[584] << " | " << mirror[584]
-		<< std::endl;
+			  << "\n0:\t" << numbers[0] << " | " << mirror[0]
+			  << "\n231:\t" << numbers[231] << " | " << mirror[231]
+			  << "\n584:\t" << numbers[584] << " | " << mirror[584] << std::endl;
 	std::cout << "  overwriting content of one array\n";
 	for (int i = 0; i < MAX_VAL; i++)
 	{
 		numbers[i] = rand();
 	}
 	std::cout << "  some prints from BOTH arrays, must be different now:"
-		<< "\n0:\t" << numbers[0] << " | " << mirror[0]
-		<< "\n231:\t" << numbers[231] << " | " << mirror[231]
-		<< "\n584:\t" << numbers[584] << " | " << mirror[584]
-		<< std::endl;
+			  << "\n0:\t" << numbers[0] << " | " << mirror[0]
+			  << "\n231:\t" << numbers[231] << " | " << mirror[231]
+			  << "\n584:\t" << numbers[584] << " | " << mirror[584] << std::endl;
 	delete[] mirror;
 	return (true);
 }
@@ -98,7 +98,7 @@ void testsConstruction()
 	catch (std::out_of_range& e)
 	{
 		std::cerr << "[0] but array is empty\n"
-			<< "error: " << e.what() << std::endl;
+				  << "error: " << e.what() << std::endl;
 	}
 	try
 	{
@@ -107,7 +107,7 @@ void testsConstruction()
 	catch (std::out_of_range& e)
 	{
 		std::cerr << "[-1] implicit conversion to number greater size\n"
-			<< "error: " << e.what() << std::endl;
+				  << "error: " << e.what() << std::endl;
 	}
 	unsigned int valPos = 1234567890;
 	try
@@ -130,7 +130,7 @@ void testsConstruction()
 		std::cerr << "size " << val << ": " << e.what() << std::endl;
 	}
 	Array<char> three(23);
-	Array<double> four (99);
+	Array<double> four(99);
 }
 
 } // namespace
@@ -142,6 +142,6 @@ int main()
 	// std::cout << "a: " << *a << " | str: " << *str << '\n';
 	if (!testsProjectMain())
 		return (1);
-	testsConstruction();	
+	testsConstruction();
 	return (0);
 }
