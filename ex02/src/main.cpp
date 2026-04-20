@@ -6,7 +6,7 @@
 /*   By: mweghofe <mweghofe@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 12:59:32 by mweghofe          #+#    #+#             */
-/*   Updated: 2026/04/20 15:27:11 by mweghofe         ###   ########.fr       */
+/*   Updated: 2026/04/20 22:16:12 by mweghofe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int main()
 		return (1);
 	Array<std::string> one;
 	std::cout << sizeof (one) << std::endl;
-	one[-1]; // C++ does implicit conversions
+	try {one[0];}catch(std::out_of_range& e){std::cout << "is empty" << std::endl;}
+	try {one[-1];}catch(std::out_of_range& e){std::cout << "negative -> implicit conversion" << std::endl;}
 	return (0);
 }

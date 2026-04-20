@@ -6,7 +6,7 @@
 /*   By: mweghofe <mweghofe@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 11:13:26 by mweghofe          #+#    #+#             */
-/*   Updated: 2026/04/20 14:45:11 by mweghofe         ###   ########.fr       */
+/*   Updated: 2026/04/20 21:48:14 by mweghofe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 // EXCEPTION
 // -----------------------------------------------------------------------------
 
-template <typename T>
-const char* Array<T>::OutOfBounds::what() const throw()
-{
-	return ("Index to access array is out of bounds.");
-}
+// template <typename T>
+// const char* Array<T>::OutOfBounds::what() const throw()
+// {
+// 	return ("Index to access array is out of bounds.");
+// }
 
 // -----------------------------------------------------------------------------
 // IMPLEMENTATION
@@ -45,7 +45,7 @@ template <typename T>
 T& Array<T>::operator[](unsigned int i)
 {
 	if (i >= size_)
-		throw (OutOfBounds());
+		throw (std::out_of_range("Index to access array is out of bounds."));
 	return (element_[i]);
 }
 
