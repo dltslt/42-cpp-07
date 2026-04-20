@@ -6,7 +6,7 @@
 /*   By: mweghofe <mweghofe@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 12:59:32 by mweghofe          #+#    #+#             */
-/*   Updated: 2026/04/20 14:31:41 by mweghofe         ###   ########.fr       */
+/*   Updated: 2026/04/20 15:27:11 by mweghofe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,13 @@ bool testsProjectMain()
 
 int main()
 {
-	int * a= new int();
-	std::string *str = new std::string();
-	std::cout << "a: " << *a << " | str: " << *str << '\n';
+	// int * a= new int();
+	// std::string *str = new std::string();
+	// std::cout << "a: " << *a << " | str: " << *str << '\n';
 	if (!testsProjectMain())
 		return (1);
+	Array<std::string> one;
+	std::cout << sizeof (one) << std::endl;
+	one[-1]; // C++ does implicit conversions
 	return (0);
 }
