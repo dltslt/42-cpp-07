@@ -6,24 +6,12 @@
 /*   By: mweghofe <mweghofe@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 11:13:26 by mweghofe          #+#    #+#             */
-/*   Updated: 2026/04/21 15:13:43 by mweghofe         ###   ########.fr       */
+/*   Updated: 2026/04/21 15:20:50 by mweghofe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <exception>
 #include <stdexcept>
 #include <iostream>
-#include "Array.hpp"
-
-// -----------------------------------------------------------------------------
-// EXCEPTION
-// -----------------------------------------------------------------------------
-
-// template <typename T>
-// const char* Array<T>::OutOfBounds::what() const throw()
-// {
-// 	return ("Index to access array is out of bounds.");
-// }
 
 // -----------------------------------------------------------------------------
 // IMPLEMENTATION
@@ -74,7 +62,7 @@ T* Array<T>::createArray()
 	}
 	catch (std::bad_alloc& e)
 	{
-		std::cerr << "Error: " << e.what() << std::endl;
+		std::cerr << "Error: " << e.what() << std::endl; // for convenience...
 		size_ = 0;
 		throw;
 	}
