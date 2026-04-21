@@ -6,7 +6,7 @@
 /*   By: mweghofe <mweghofe@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 11:13:26 by mweghofe          #+#    #+#             */
-/*   Updated: 2026/04/21 15:20:50 by mweghofe         ###   ########.fr       */
+/*   Updated: 2026/04/21 15:28:34 by mweghofe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ Array<T>::Array(const Array& other)
 	}
 	catch (const std::exception& e)
 	{
+		delete[] element_;
 		size_ = 0;
 		element_ = NULL;
 		throw;
@@ -116,6 +117,7 @@ Array<T>& Array<T>::operator=(const Array& other)
 	{
 		unsigned int oldSize = size_;
 		T* oldArr = element_;
+		element_ = NULL;
 		size_ = other.size_;
 		try {
 			element_ = createArray();
@@ -124,6 +126,7 @@ Array<T>& Array<T>::operator=(const Array& other)
 		}
 		catch (const std::exception& e)
 		{
+			delete[] element_;
 			size_ = oldSize;
 			element_ = oldArr;
 			throw;
