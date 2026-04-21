@@ -6,7 +6,7 @@
 /*   By: mweghofe <mweghofe@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 11:13:26 by mweghofe          #+#    #+#             */
-/*   Updated: 2026/04/21 15:12:41 by mweghofe         ###   ########.fr       */
+/*   Updated: 2026/04/21 15:13:43 by mweghofe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,16 @@ unsigned int Array<T>::size() const
 
 template <typename T>
 T& Array<T>::operator[](unsigned int i)
+{
+	if (element_ == NULL)
+		throw (std::logic_error("No array exists."));
+	if (i >= size_)
+		throw (std::out_of_range("Index to access array is out of bounds."));
+	return (element_[i]);
+}
+
+template <typename T>
+const T& Array<T>::operator[](unsigned int i) const
 {
 	if (element_ == NULL)
 		throw (std::logic_error("No array exists."));

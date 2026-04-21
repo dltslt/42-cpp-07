@@ -6,7 +6,7 @@
 /*   By: mweghofe <mweghofe@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 11:06:50 by mweghofe          #+#    #+#             */
-/*   Updated: 2026/04/20 21:40:08 by mweghofe         ###   ########.fr       */
+/*   Updated: 2026/04/21 15:13:54 by mweghofe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ template <typename T> class Array
 	unsigned int size() const;
 	Array(unsigned int);
 	T& operator[](unsigned int);
+	const T& operator[](unsigned int) const;
 	// --
 	Array();
 	Array(const Array&);

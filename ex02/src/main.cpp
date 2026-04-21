@@ -6,7 +6,7 @@
 /*   By: mweghofe <mweghofe@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 12:59:32 by mweghofe          #+#    #+#             */
-/*   Updated: 2026/04/21 15:04:54 by mweghofe         ###   ########.fr       */
+/*   Updated: 2026/04/21 15:14:04 by mweghofe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ void testsConst()
 	const Array<std::string> strSize(2);
 	std::cout << "strEmpty size: " << strEmpty.size() << std::endl;
 	std::cout << "strSize size: " << strSize.size() << std::endl;
-	// std::cout << "accessing element in strSize: " << strSize[1] << std::endl;
+	std::cout << "accessing element in strSize: " << strSize[1] << std::endl;
 	
 }
 
