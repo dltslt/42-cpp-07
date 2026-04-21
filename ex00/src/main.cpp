@@ -6,13 +6,21 @@
 /*   By: mweghofe <mweghofe@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 01:13:54 by mweghofe          #+#    #+#             */
-/*   Updated: 2026/04/20 02:16:19 by mweghofe         ###   ########.fr       */
+/*   Updated: 2026/04/21 15:44:10 by mweghofe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "whatever.hpp"
 #include <iostream>
 #include <string>
+
+/*
+	NOTE ON FUNCTION CALLING
+	calling ::min() looks for the min() declared in GLOBAL namespace
+		while ignoring any other locally declared functions of same name
+	using just min() is unqualified lookup
+		checks local scope first, then moves to outer scope(s)
+*/
 
 int main()
 {
