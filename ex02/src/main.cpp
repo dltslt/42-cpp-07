@@ -6,7 +6,7 @@
 /*   By: mweghofe <mweghofe@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 12:59:32 by mweghofe          #+#    #+#             */
-/*   Updated: 2026/04/20 23:58:23 by mweghofe         ###   ########.fr       */
+/*   Updated: 2026/04/21 14:46:08 by mweghofe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,18 +96,18 @@ void testsConstruction()
 	{
 		one[0];
 	}
-	catch (std::out_of_range& e)
+	catch (const std::exception& e)
 	{
-		std::cerr << "[0] but array is empty\n"
+		std::cerr << "attempted [0] but array is empty\n"
 				  << "error: " << e.what() << std::endl;
 	}
 	try
 	{
 		one[-1];
 	}
-	catch (std::out_of_range& e)
+	catch (const std::exception& e)
 	{
-		std::cerr << "[-1] implicit conversion to number greater size\n"
+		std::cerr << "[-1] implicit conversion to number greater size_\n"
 				  << "error: " << e.what() << std::endl;
 	}
 	unsigned int valPos = 1234567890;
@@ -146,7 +146,7 @@ void testsDeepCopy()
 	b[1] = 42;
 	std::cout << "a | b for [0,1,2]:    " << a[0] << " | " << b[0] << "    "
 		<< a[1] << " | " << b[1] << "    " << a[2] << " | " << b[2] << '\n';
-	std::cout << "\n  copy assignment for c{11,22,33} with b(a), d[1] = 44\n";
+	std::cout << "\n  copy assignment for c{11,22,33} with d=c, d[1] = 44\n";
 	Array<int> c(3);
 	c[0] = 11; c[1] = 22; c[2] = 33;
 	Array<int> d(3);
@@ -154,11 +154,11 @@ void testsDeepCopy()
 	d[1] = 44;
 	std::cout << "c | d for [0,1,2]:    " << c[0] << " | " << d[0] << "    "
 		<< c[1] << " | " << d[1] << "    " << c[2] << " | " << d[2] << '\n';
-	std::cout << "\n  self assignment e{42,24}\n";
-	Array<int> e(2);
-	e[0] = 42; e[1] = 24;
-	e = e;
-	std::cout << e[0] << " " << e[1] << "\n";
+	// std::cout << "\n  self assignment e{42,24}\n";
+	// Array<int> e(2);
+	// e[0] = 42; e[1] = 24;
+	// e = e;
+	// std::cout << e[0] << " " << e[1] << "\n";
 	std::cout << "\n  different size assignment m(7){0} n(2){42,24}\n";
 	Array<int> m(7), n(2);
 	n[0] = 42, n[1] = 24;

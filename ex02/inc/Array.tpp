@@ -6,7 +6,7 @@
 /*   By: mweghofe <mweghofe@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 11:13:26 by mweghofe          #+#    #+#             */
-/*   Updated: 2026/04/21 00:41:14 by mweghofe         ###   ########.fr       */
+/*   Updated: 2026/04/21 14:33:33 by mweghofe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ unsigned int Array<T>::size() const
 template <typename T>
 T& Array<T>::operator[](unsigned int i)
 {
+	if (element_ == NULL)
+		throw (std::logic_error("No array exists."));
 	if (i >= size_)
 		throw (std::out_of_range("Index to access array is out of bounds."));
 	return (element_[i]);
@@ -55,9 +57,7 @@ T& Array<T>::operator[](unsigned int i)
 
 template <typename T>
 T* Array<T>::createArray()
-{ // FIXME this must go away! the work has to be done by the callers!!
-	// because operator= and ctor have different things to do on fail...
-	// then either capture exception or throw it again
+{
 	try
 	{
 		return (new T[size_]());
@@ -66,7 +66,7 @@ T* Array<T>::createArray()
 	{
 		std::cerr << "Error: " << e.what() << std::endl;
 		size_ = 0;
-		return (NULL);
+		throw;
 	}
 }
 
@@ -107,11 +107,19 @@ Array<T>& Array<T>::operator=(const Array& other)
 {
 	if (this != &other)
 	{
+		unsigned int oldSize = size_;
 		size_ = other.size_;
-		T* tmp = createArray();
-		delete[] element_;
-		element_ = tmp;
-		copyArray(other);
+		try {
+			T* tmp = createArray();
+			delete[] element_;
+			element_ = tmp;
+			copyArray(other);
+		}
+		catch (const std::exception& e)
+		{
+			size_ = oldSize;
+			throw;
+		}
 	}
 	return (*this);
 }
